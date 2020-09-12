@@ -10,7 +10,7 @@ class AuthController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         }else{
-
+            return view('login');
         }
     }
 
@@ -18,7 +18,7 @@ class AuthController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
         }else{
-
+            return view('register');
         }
     }
 }

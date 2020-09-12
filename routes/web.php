@@ -16,8 +16,10 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('main');
-Route::get('/tentang', [MainController::class, 'about'])->name('tentang');
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register',[AuthController::class, 'register'])->name('register');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware('guest')->group(function (){
+    Route::get('/', [MainController::class, 'index'])->name('main');
+    Route::get('/tentang', [MainController::class, 'about'])->name('tentang');
+    Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+    Route::match(['get', 'post'],'/register',[AuthController::class, 'register'])->name('register');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
